@@ -44,6 +44,8 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'pundit'
 # Add simple form
 gem 'simple_form'
+# Add rails-api
+gem 'rails-api'
 
 
 group :development, :test do

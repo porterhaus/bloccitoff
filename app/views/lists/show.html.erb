@@ -1,5 +1,5 @@
 <h1><%= @list.title %></h1>
 
 <% @list.items.each do |item| %>
-  <p><%= item.description %></p>
+  <p><%= link_to item.description, [@list, item] %></p>
 <% end %>
