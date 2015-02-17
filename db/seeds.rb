@@ -7,6 +7,38 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'faker'
 
+# Create Users
+5.times do
+ user = User.new(
+   name:     Faker::Name.name,
+   email:    Faker::Internet.email,
+   password: Faker::Lorem.characters(10)
+ )
+ user.skip_confirmation!
+ user.save!
+end
+users = User.all
+
+# Create Lists
+150.times do
+ List.create!(
+   title: Faker::Lorem.sentence,
+   user: users.sample,
+ )
+end
+lists = List.all
+
+#Create Items
+1000.times do
+  Item.create!(
+    description: Faker::Lorem.sentence,
+    user: users.sample,
+    list: lists.sample
+  )
+end
+items = Item.all
+
+
 # Create an admin user
 admin = User.new(
    name:     'Admin User',
