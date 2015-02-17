@@ -36,6 +36,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker'
 # Add devise
 gem 'devise'
+# Add bootstrap
+gem 'bootstrap-sass', '~> 3.1.1'
+# Add pundit
+gem 'pundit'
+# Add simple form
+gem 'simple_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
