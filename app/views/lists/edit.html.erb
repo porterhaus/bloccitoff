@@ -1,2 +1,10 @@
-<h1>Lists#edit</h1>
-<p>Find me in app/views/lists/edit.html.erb</p>
+<%= simple_form_for(@list, html: { class: 'form-horizontal' }) do |f| %> 
+
+  <div class="form-group">
+    <%= f.input :title, autofocus: true, input_html: { class: 'form-control input-lg' }, placeholder: "Enter a title", label: false %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, "Save", class: 'btn btn-default' %>
+  </div>
+
+<% end %>

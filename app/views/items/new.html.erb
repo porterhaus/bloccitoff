@@ -1,2 +1,4 @@
-<h1>Items#new</h1>
-<p>Find me in app/views/items/new.html.erb</p>
+<%= simple_form_for [@list, @item], html: {class: 'form-horizontal'} do |f| %>
+  <%= f.input :name, placeholder: 'Enter post title' %>
+  <%= f.button :submit, 'Save this item', class: 'btn btn-success' %>
+<% end %>

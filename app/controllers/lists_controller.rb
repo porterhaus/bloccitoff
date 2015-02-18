@@ -7,6 +7,7 @@ class ListsController < ApplicationController
 
   def show
     @list = current_user.list
+    @items = current_user.list.items
   end
 
   def mylist
@@ -18,14 +19,12 @@ class ListsController < ApplicationController
   end
 
   def edit
-    @list = List.find(params[:id])
+    @list = current_user.list
   end
 
   def create
     @list = List.new(params.require(:list).permit(:title))
     @list.user_id = current_user.id
-
-    #authorize @topic
     
     if @list.save
      redirect_to @list, notice: "List was saved successfully."
@@ -36,14 +35,26 @@ class ListsController < ApplicationController
   end
 
   def update
-    @list = List.find(params[:id])
+    @list = current_user.list
     #authorize @topic
-    if @list.update_attributes(params.require(:list).permit(:title, :permissions))
+    if @list.update_attributes(params.require(:list).permit(:title))
      redirect_to @list, notice: "List updated successfully."
     else
-     flash[:error] = "Error saving topic. Please try again."
+     flash[:error] = "Error saving changes. Please try again."
      render :edit
     end
   end
+
+  def destroy
+     @list = current_user.list
+
+     if @list.destroy
+       flash[:notice] = "Your list was deleted successfully."
+       redirect_to list_path
+     else
+       flash[:error] = "There was an error deleting your list."
+       render :show
+     end
+   end
 
 end

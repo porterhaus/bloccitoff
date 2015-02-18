@@ -2,10 +2,8 @@
 
 one:
   title: MyString
-  permissions: MyString
-  references: 
+  user_id: 
 
 two:
   title: MyString
-  permissions: MyString
-  references: 
+  user_id: 

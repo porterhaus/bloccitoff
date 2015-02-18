@@ -1,40 +1,28 @@
 class ItemsController < ApplicationController
-  def index
-    @items = Item.all
-  end
-
-  def show
-    @item = Item.find(params[:id])
-  end
 
   def new
+    @list = current_user.list
     @item = Item.new
   end
 
-  def edit
-    @item = Item.find(params[:id])
-  end
-
   def create
-    @item = Item.new(params.require(:item).permit(:description, :completed))
-    #authorize @topic
+    @list = List.find(params[:list_id])
+    @item = current_user.list.items.build(post_params)
+    @item.list = @list
+
     if @item.save
-     redirect_to @item, notice: "Item was saved successfully."
+      flash[:notice] = "Item was added to list."
+      redirect_to @list
     else
-     flash[:error] = "Error creating item. Please try again."
-     render :new
+      flash[:error] = "There was an error saving the item to the list. Please try again."
+      render :new
     end
   end
 
-  def update
-    @item = Item.find(params[:id])
-    #authorize @topic
-    if @item.update_attributes(params.require(:item).permit(:description, :completed))
-     redirect_to @item, notice: "Item updated successfully."
-    else
-     flash[:error] = "Error saving item. Please try again."
-     render :edit
-    end
+  private
+
+  def post_params
+    params.require(:item).permit(:name, :list_id)
   end
 
 end
