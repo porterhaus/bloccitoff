@@ -12,9 +12,9 @@
   
   <%= link_to "Delete List", @list, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this list?' } %>
 
-
-  <% @items.each do |item| %>
-    <h3><%= item.name %></h3>
+<hr>
+  <% @list.items.each do |item| %>
+    <p><%= render partial: 'items/item', locals: { list: @list, item: item } %></p>
   <% end %>
 
 <% end %>

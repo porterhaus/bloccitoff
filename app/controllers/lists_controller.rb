@@ -7,7 +7,7 @@ class ListsController < ApplicationController
 
   def show
     @list = current_user.list
-    @items = current_user.list.items
+    #@items = current_user.list.items
   end
 
   def mylist

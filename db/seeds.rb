@@ -14,7 +14,6 @@ require 'faker'
    email:    Faker::Internet.email,
    password: Faker::Lorem.characters(10)
  )
- user.skip_confirmation!
  user.save!
 end
 users = User.all
@@ -31,8 +30,7 @@ lists = List.all
 #Create Items
 1000.times do
   Item.create!(
-    description: Faker::Lorem.sentence,
-    user: users.sample,
+    name: Faker::Lorem.sentence,
     list: lists.sample
   )
 end

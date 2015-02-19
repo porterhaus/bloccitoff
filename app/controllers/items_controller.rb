@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def new
     @list = current_user.list
     @item = Item.new
@@ -17,6 +18,10 @@ class ItemsController < ApplicationController
       flash[:error] = "There was an error saving the item to the list. Please try again."
       render :new
     end
+  end
+
+  def destroy
+
   end
 
   private

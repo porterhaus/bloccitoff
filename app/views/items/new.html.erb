@@ -1,4 +1,1 @@
-<%= simple_form_for [@list, @item], html: {class: 'form-horizontal'} do |f| %>
-  <%= f.input :name, placeholder: 'Enter post title' %>
-  <%= f.button :submit, 'Save this item', class: 'btn btn-success' %>
-<% end %>
+<%= render partial: 'form', locals: { list: @list, item: @item } %>
