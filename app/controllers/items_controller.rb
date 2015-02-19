@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
+  respond_to :html, :js
   
   def new
     @list = current_user.list
@@ -21,6 +22,18 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @list = current_user.list
+    @item = Item.find(params[:id])
+
+    if @item.destroy
+      flash[:notice] = "Todo completed!"
+    else
+      flash[:error] = "Todo could not be completed. Try again."
+    end
+
+    respond_with(@litem) do |format|
+     format.html { redirect_to [@list, @item] }
+    end
 
   end
 

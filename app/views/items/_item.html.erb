@@ -1,2 +1,3 @@
-  <p><h3><%= item.name %></h3> <%= item.days_left %> days left to complete.</p>
-    <%= link_to "Delete Item", [@list, item], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this todo?' } %>
+<%= content_tag :div, id: "item-#{item.id}" do %>
+<h3><%= item.name %></h3> <%= item.days_left %> days left to complete. <%= link_to "Complete", [@list, item], method: :delete, class: 'glyphicon glyphicon-ok', remote: true%></p>
+<% end %>
