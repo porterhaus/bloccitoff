@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
+  
+  # Added responders gem
   respond_to :html, :js
   
   def new
@@ -31,8 +33,8 @@ class ItemsController < ApplicationController
       flash[:error] = "Todo could not be completed. Try again."
     end
 
-    respond_with(@litem) do |format|
-     format.html { redirect_to [@list, @item] }
+    respond_with(@item) do |format|
+      format.html { redirect_to @list }
     end
 
   end
